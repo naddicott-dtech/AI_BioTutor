@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Biology Tutor</title>
+  </head>
+  <body>
+    <button onclick="clearSiteData()">Start New Session</button>
+    <!-- Disclaimer about data privacy -->
+    <p style="margin-top: 20px; font-size: 14px; color: #555;">
+      Disclaimer: This reset only clears data stored locally on your device. Please be aware that all requests made to this AI assistant are viewable by your instructor.
+    </p>
+    
+    <!-- Known Issues Section -->
+    <h3 style="margin-top: 30px;">Known Issues:</h3>
+    <ul style="list-style-type: none; padding-left: 0; max-width: 400px;">
+      
+      <!-- Issue 1 -->
+      <li style="margin-bottom: 20px;">
+        <p style="margin: 0;">
+          <strong>Issue with Double Quotation Marks:</strong> 
+          Using double quotation marks (") in a question can result in a "Failed to generate response" error.
+        </p>
+      </li>
+
+      <!-- Issue 2 -->
+      <li style="margin-bottom: 20px;">
+        <img src="https://cdn.glitch.global/5c97a4ad-d6b1-49ee-b3a1-8f1d325b4f79/emailGlitch.png?v=1723572572404" alt="Email Glitch" style="width: 150px; height: 150px; float: left; margin-right: 10px;">
+        <p style="margin: 0;">
+          <strong>"You can submit a ticket" response:</strong> 
+          Sometimes after several questions or one longer prompt, the chat may prompt you to submit a ticket and request your email address. If this occurs, please use the "Start New Session" button at the top left of the page and <strong>do not</strong> provide your email address.
+        </p>
+      </li>
+      
+    </ul>
+    
+    <script type="text/javascript">
+      function clearSiteData() {
+        // Clear cookies
+        document.cookie.split(";").forEach(function(c) { 
+          document.cookie = c.trim().split("=")[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/'; 
+        });
+        
+        // Clear local storage
+        localStorage.clear();
+        
+        // Clear session storage
+        sessionStorage.clear();
+        
+        // Clear IndexedDB
+        indexedDB.databases().then((databases) => {
+          databases.forEach(db => {
+            indexedDB.deleteDatabase(db.name);
+          });
+        }).finally(() => {
+          // Reload the page after clearing data
+          location.reload();
+        });
+      }
+      
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '66ba79f5a0f89bc1e5effd07' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production'
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+  </body>
+</html>
